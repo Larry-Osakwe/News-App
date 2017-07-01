@@ -7,6 +7,7 @@ package com.larry.osakwe.newsapp;
 public class Review {
 
     private String gameTitle;
+    private int gameID;
     private long date;
     private String author;
     private float rating;
@@ -14,8 +15,9 @@ public class Review {
     private String image;
     private String platform;
 
-    public Review(String gameTitle, long date, String author, float rating, String URL, String image, String platform) {
+    public Review(String gameTitle, int gameID, long date, String author, float rating, String URL, String image, String platform) {
         this.gameTitle = gameTitle;
+        this.gameID = gameID;
         this.date = date;
         this.author = author;
         this.rating = rating;
@@ -24,8 +26,13 @@ public class Review {
         this.platform = platform;
     }
 
+
     public String getGameTitle() {
         return gameTitle;
+    }
+
+    public int getGameID() {
+        return gameID;
     }
 
     public long getDate() {
