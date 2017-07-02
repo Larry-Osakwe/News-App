@@ -10,12 +10,12 @@ public class Review {
     private int gameID;
     private long date;
     private String author;
-    private float rating;
+    private int rating;
     private String URL;
     private String image;
     private String platform;
 
-    public Review(String gameTitle, int gameID, long date, String author, float rating, String URL, String image, String platform) {
+    public Review(String gameTitle, int gameID, long date, String author, int rating, String URL, String image, String platform) {
         this.gameTitle = gameTitle;
         this.gameID = gameID;
         this.date = date;
@@ -43,7 +43,7 @@ public class Review {
         return author;
     }
 
-    public float getRating() {
+    public int getRating() {
         return rating;
     }
 
