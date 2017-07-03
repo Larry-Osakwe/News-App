@@ -62,7 +62,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_gravity="bottom"
-                android:rating="2" />
+                android:rating="2"
+                android:isIndicator="true"/>
 
         </RelativeLayout>
 

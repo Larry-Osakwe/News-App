@@ -55,10 +55,10 @@ public class ReviewAdapter extends ArrayAdapter<Review> {
         platform.setText(currentReview.getPlatform());
 
         RatingBar rating = (RatingBar) listItemView.findViewById(R.id.ratingBar);
-        rating.setNumStars(currentReview.getRating());
+        rating.setRating(currentReview.getRating());
 
 
-        return super.getView(position, convertView, parent);
+        return listItemView;
     }
 
     public String dateFormat() {
