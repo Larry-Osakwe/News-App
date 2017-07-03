@@ -8,14 +8,14 @@ public class Review {
 
     private String gameTitle;
     private int gameID;
-    private long date;
+    private String date;
     private String author;
     private int rating;
     private String URL;
     private String image;
     private String platform;
 
-    public Review(String gameTitle, int gameID, long date, String author, int rating, String URL, String image, String platform) {
+    public Review(String gameTitle, int gameID, String date, String author, int rating, String URL, String image, String platform) {
         this.gameTitle = gameTitle;
         this.gameID = gameID;
         this.date = date;
@@ -35,7 +35,7 @@ public class Review {
         return gameID;
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 

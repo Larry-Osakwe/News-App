@@ -50,7 +50,7 @@ public final class QueryUtils {
                 JSONObject game = review.getJSONObject("game");
                 String gameTitle = game.getString("name");
                 int gameID = game.getInt("id");
-                //String date = review.getString("public_date");
+                String date = review.getString("publish_date");
                 String author = review.getString("reviewer");
                 int rating = review.getInt("score");
                 String aUrl = review.getString("site_detail_url");
@@ -58,7 +58,7 @@ public final class QueryUtils {
 
 
 
-                reviews.add(new Review(gameTitle, gameID, 222, author, rating, aUrl, "test", platform));
+                reviews.add(new Review(gameTitle, gameID, date, author, rating, aUrl, "test", platform));
 
             }
 

@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,7 +44,7 @@ public class ReviewAdapter extends ArrayAdapter<Review> {
         gameTitle.setText(currentReview.getGameTitle());
 
         TextView date = (TextView) listItemView.findViewById(R.id.review_date);
-        date.setText(dateFormat());
+        date.setText(currentReview.getDate());
 
         TextView author = (TextView) listItemView.findViewById(R.id.author);
         author.setText(currentReview.getAuthor());
@@ -61,11 +59,11 @@ public class ReviewAdapter extends ArrayAdapter<Review> {
         return listItemView;
     }
 
-    public String dateFormat() {
+    /*public String dateFormat() {
         long timeInMilliseconds = currentReview.getDate();
         Date dateObject = new Date(timeInMilliseconds);
         SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM dd, yyyy");
 
         return dateFormatter.format(dateObject);
-    }
+    }*/
 }
