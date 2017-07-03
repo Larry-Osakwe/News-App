@@ -39,6 +39,7 @@ public final class QueryUtils {
         URL url = createURL(reviewJSON);
 
         String jsonResponse = null;
+        String imageJsonResponse = null;
 
         try {
             jsonResponse = makeHttpRequest(url);
@@ -57,8 +58,16 @@ public final class QueryUtils {
                 String platform = review.getString("platforms");
 
 
+                URL imageUrl = createURL(game.getString("api_detail_url") + "?api_key=837e532ede8d717222c1247baad46cb354fb9686&format=json");
+                imageJsonResponse = makeHttpRequest(imageUrl);
+                JSONObject imageBaseJsonResponse = new JSONObject(imageJsonResponse);
+                JSONObject imageResult = imageBaseJsonResponse.getJSONObject("results");
+                JSONObject image = imageResult.getJSONObject("image");
+                String iconURL = image.getString("icon_url");
 
-                reviews.add(new Review(gameTitle, gameID, date, author, rating, aUrl, "test", platform));
+
+
+                reviews.add(new Review(gameTitle, gameID, date, author, rating, aUrl, iconURL, platform));
 
             }
 

@@ -24,9 +24,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public static final String LOG_TAG = MainActivity.class.getName();
     private static final int REVIEW_LOADER_ID = 1;
     private static final String REVIEW_JSON_RESPONSE = "https://www.giantbomb.com/api/reviews/" +
-            "?api_key=837e532ede8d717222c1247baad46cb354fb9686&format=json&limit=5";
-    private String imageUrl = "https://www.giantbomb.com/api/game/3030-" + "gameId" +
-            "/?api_key=837e532ede8d717222c1247baad46cb354fb9686&format=json";
+            "?api_key=837e532ede8d717222c1247baad46cb354fb9686&format=json&limit=10";
     private ReviewAdapter mAdapter;
     private TextView mEmptyStateTextView;
 

@@ -56,6 +56,7 @@ public class ReviewAdapter extends ArrayAdapter<Review> {
         rating.setRating(currentReview.getRating());
 
 
+
         return listItemView;
     }
 
