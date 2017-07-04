@@ -5,11 +5,15 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public static final String LOG_TAG = MainActivity.class.getName();
     private static final int REVIEW_LOADER_ID = 1;
     private static final String REVIEW_JSON_RESPONSE = "https://www.giantbomb.com/api/reviews/" +
-            "?api_key=837e532ede8d717222c1247baad46cb354fb9686&format=json&limit=10";
+            "?api_key=837e532ede8d717222c1247baad46cb354fb9686";
     private ReviewAdapter mAdapter;
     private TextView mEmptyStateTextView;
 
@@ -88,7 +92,22 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public Loader<List<Review>> onCreateLoader(int id, Bundle args) {
-        return new ReviewLoader(this, REVIEW_JSON_RESPONSE);
+
+
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String maxLimit = sharedPrefs.getString( getString(R.string.setting_max_limit_key), getString(R.string.setting_max_limit_key_default));
+
+
+        Uri baseUri = Uri.parse(REVIEW_JSON_RESPONSE);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("format", "json");
+        uriBuilder.appendQueryParameter("limit", maxLimit);
+
+
+
+
+        return new ReviewLoader(this, uriBuilder.toString());
     }
 
     @Override
@@ -132,5 +151,22 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             List<Review> reviews = QueryUtils.extractReviews(mUrl);
             return reviews;
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
